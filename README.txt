@@ -1,0 +1,1 @@
+The infographic was created using Canva and all images were taken from Canva as well.
