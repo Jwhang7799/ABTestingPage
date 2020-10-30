@@ -2,13 +2,127 @@
 
 <html>
   <head>
-    <title>INSERT TITLE HERE!</title>
+    <title>A/B Testing</title>
     <link rel="stylesheet" href="index.css">
-    <!-- TODO: add additional links here! e.g. fonts, icons, more stylesheets, etc. -->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
   </head>
 
   <body>
-    <!-- TODO: put your HTML code here! -->
+    <nav>
+      <ul class="navList">
+        <li class="links"><a href="#hypo">Hypotheses</a></li>
+        <li class="links"><a href="#data">Data Collection</a></li>
+        <li class="links"><a href="#results">Results Infographic</a></li>
+        <li class="links"><a href="#takeaways">Takeaways</a></li>
+      </ul>
+    </nav>
+    <div>
+      <div class="title">
+        <div class="titleText">Using A/B Testing</div>
+        <div class="titleText">to Test Buyer Behaviour</div>        
+      </div>
+      <div class="subtitle">Motivation and Background</div>
+      <p>
+        Is it possible to improve an interface's usability simply by changing the color, readability, and positioning of text and buttons on a webpage?
+        This project seeks to utilize A/B Testing and statistical analyses to gather insights behind contrasting interfaces.
+      </p>
+      <p>
+        For my A/B test, I made a couple changes to the original webpage (Version A). I changed the color of the Add To Cart button to red while moving it under its corresponding 
+        picture, un-capitalized and un-bolded the text, and moved the checkout cart icon to the bottom of the page.
+      </p>
+      <p>Please click on either version below. However, since Heroku will randomly assign you to a webpage, please continue to refresh until you reach the desired version.</p>
+      <div class="vContainer">
+        <div style="align-items: center;">
+          <a href="https://secret-dusk-80370.herokuapp.com/">
+            <img class="ver" src='./images/VA.png'>
+            <p><b>Version A</b></p>
+          </a>
+        </div>
+        <a href="https://secret-dusk-80370.herokuapp.com/">
+          <div style="align-items: center;">
+            <img class="ver" src='./images/VB.png'>
+            <p><b>Version B</b></p>
+          </div>
+        </a>
+      </div>     
+    </div>
+    <div id="hypo">
+        <div class="subtitle" style="color: #003D8F;">Hypotheses</div>
+      <p>
+        In evaluating the two different interfaces, I decided to use the user's time to completion and return rate.
+        The interface's average time to completion is defined as: the average time it takes for a user to order $150 worth of cacti.
+        The interface's return rate is defined as: the number of users returned to the page after proceeding to checkout.
+      </p>
+      <p><b>Time to Completion</b></p>
+      <p>
+        Null Hypothesis: The average time to completion for users of Version A is equal to or less than that of users of Version B
+        when at least $150 worth of cacti are added to the user's cart.
+      </p>
+      <p>
+        Alternative Hypothesis: The average time to completion for users of Version B is significantly lower than that of users of Version A 
+        when at least $150 worth of cacti are added to the user's cart.
+      </p>
+      <p>
+        Reasoning: The changes that were made to B were all made in hopes that they increased the interface's usability. First, the red button hopes to
+        grab the user's attention more quickly since red is supposed to be the color that our eyes notice first. Furthermore, the un-capitalized and un-bolded text hopes to
+        make the text easier (and thus quicker) for the user to read. The repositioning of the buttons under the text and the moving the shopping cart to 
+        bottom of the screen seeks to minimize the horizontal distance that the user's mouse must move and to create a logical flow that enables the user to
+        purchase $150 worth of cacti more efficiently.
+      </p>
+      <p><b>Return Rate</b></p>
+      <p>
+        Null Hypothesis: There is no statistically significant difference in the return rate for users that add at least $150 worth of cacti to their cart 
+        using Version A or Version B.
+      </p>
+      <p>
+        Alternative Hypothesis: The return rate of Version B is statistically different than that of users of Version A when at least $150 worth of cacti are added to the user's cart.
+      </p>
+      <p>
+        Reasoning: Since the changes that I made were all in hopes of increasing the interface's usability, my alternative hypothesis was that the return rate of Version B
+        should be different than that of Version A since users should be able to more quickly and efficiently find what they are looking for
+        and not have a need to return. Changes, like making the text easier to read, should allow users to calculate their total cost more efficiently and therefore not have to 
+        return to the purchasing page as often because they are under $150.
+      </p>
+    </div>
+    <div class="container">
+      <div id="data" class="subtitle">Collecting Data and Applying Scripts</div>
+      <p>
+        In gathering data for my two interfaces, I deployed both webpages via Heroku, which randomly selects either Version A or B to display for each user 
+        that visits the webpage. Each user was tasked with filling their cart with at least $150 worth of cacti, and each user’s session and actions were logged. 
+        Then, I calculated the average time to completion and the return rate for A and B and removed any noticeable outliers.
+      </p>
+    <div id= "results" class="subtitle">Results Infographic</div>
+    <div class='container'>
+      <img class='info' src='./images/A_B Infographic.png'>
+      <p style="padding-top: 3vw;">
+        <b>Time to Completion:</b>
+        Since the p-value resulting from the one-tailed t-test for time to completion was 0.240, which is greater than 0.05, we fail to reject the null hypothesis.
+        There is not enough evidence to suggest that the average time to completion for users of Version B is significantly lower than that of users of Version A when at
+        least $150 worth of cacti are added to the user's cart.
+      </p>
+      <p>
+        <b>Return Rate:</b>
+        Since the p-value resulting from the chi-squared test for return rate was 0.255, which is greater than 0.05, we fail to reject the null hypothesis.
+        There is not enough evidence to suggest that the return rate of users of Version B is different than that of users of Version A when at least $150 worth of 
+        cacti are added to the user's cart.
+      </p>
+    </div>
+    <div id="takeaways" style="padding-bottom: 3vw;">
+      <div class="subtitle">
+        Insights and Takeaways
+      </div>
+      <ul class="insightList">
+        <li class="insight">Limitations that may have influenced the outcome include: not having enough user datapoints, being unable to see why some removed outliers were so heavily skewed,
+          and having a somewhat uneven distribution of users who used interface A  or B.
+        </li>
+        <li class="insight">I assumed that users would go to the most expensive item immediately to purchase $150 worth as quickly as possible.
+          Therefore, this undergoes the assumption that the user would scroll down the page regardless. However, if the user only purchased the first item they saw, it would be most efficient to have the 
+          cart at the top of the page. Furthermore, though Version B's cart was also placed on the left side under the purchaseable items to minimize the distance the user's mouse would have to travel, 
+          this may have made it difficult for users to locate the cart since submit/checkout buttons tend to be on the right side of an interface.
+        </li>
+        <li class="insight">Since the checkout page was consistent across both versions, it makes sense that there was no significant difference in return rate.</li>
+        <li class="insight">My results reveal that although certain changes may be made to increase the interface's usability, an unfamiliar design may actually have no effect, or, possibly the opposite effect than intended.</li>
+      </ul>
+    </div>
   </body>
 </html>
